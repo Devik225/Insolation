@@ -1,0 +1,22 @@
+.search{
+    width: 46%;
+    margin-left: 25px;
+    margin-top: 25px;
+    /* height: 30px; */
+}
+
+.searchShort{
+    width: 21.75%;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.searchLabel{
+    font-size: 12px;
+}
+
+.searchBox{
+    /* width: 30%; */
+    width: 100%;
+    height: 25px;
+}
