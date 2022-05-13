@@ -19,7 +19,9 @@ function App() {
   let url2 = 'https://api.solcast.com.au/world_radiation/forecasts?latitude='+latitude+'&amp;longitude='+longitude+'&api_key=cwUbBF97R-Eblio8Upz8BG5hVBf3ILpO&amp;hours=24&format=json';
 
   let getData = async ()=>{
-    let data1 = await fetch(url1);
+    let data1 = await fetch(url1, {
+      mode:'no-cors'
+    });
     const temp1 = await data1.text();
     setPvData(temp1);
     console.log(temp1);
