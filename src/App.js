@@ -3,6 +3,7 @@ import './App.css';
 import logo from './images/logo.svg'
 import Search from './Components/Search';
 import SearchShort from './Components/SearchShort';
+import pvenergy from './pvenergy.js';
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   let [tilt, setTilt] = useState('45');
   let [capacity, setCapacity] = useState('20');
   let [installDate, setInstallDate] = useState('2020-03-24');
-  let [pvData, setPvData] = useState('');
+  let [pvData, setPvData] = useState(pvenergy);
   let url1 = 'https://api.solcast.com.au/world_pv_power/forecasts?latitude='+latitude
             +'&longitude='+longitude+'&hours=24&format=json&tilt='+tilt+'&api_key=cwUbBF97R-Eblio8Upz8BG5hVBf3ILpO&capacity='
             +capacity+'&install_date='+installDate;
@@ -54,7 +55,7 @@ function App() {
           </div>
           <div className='graphContainer'>
             <div className='graph'>
-            {pvData}
+            {pvData.forecasts[0].pv_estimate}
               <div className='label'>Graph of last 24hrs Photo voltaic power estimation:</div>
             </div>
             <div className='graphDataContainer'>
