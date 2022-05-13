@@ -11,13 +11,20 @@ function App() {
   let [tilt, setTilt] = useState('45');
   let [capacity, setCapacity] = useState('20');
   let [installDate, setInstallDate] = useState('2020-03-24');
+  let [pvData, setPvData] = useState('');
   let url1 = 'https://api.solcast.com.au/world_pv_power/forecasts?latitude='+latitude
-            +'&longitude='+longitude+'&hours=24&format=json&tilt='+tilt+'&capacity='
+            +'&longitude='+longitude+'&hours=24&format=json&tilt='+tilt+'&api_key=cwUbBF97R-Eblio8Upz8BG5hVBf3ILpO&capacity='
             +capacity+'&install_date='+installDate;
-  let url2 = 'https://api.solcast.com.au/world_radiation/forecasts?latitude='+latitude+'&amp;longitude='+longitude+'&amp;hours=24&format=json';
+  let url2 = 'https://api.solcast.com.au/world_radiation/forecasts?latitude='+latitude+'&amp;longitude='+longitude+'&api_key=cwUbBF97R-Eblio8Upz8BG5hVBf3ILpO&amp;hours=24&format=json';
 
-  let getData = ()=>{
-    
+  let getData = async ()=>{
+    let data1 = await fetch(url1, {
+      mode: 'no-cors',
+      'Access-Control-Allow-Origin' : null
+    });
+    const temp1 = await data1.text();
+    // setPvData(temp1);
+    console.log(temp1);
   };
 
   return (
@@ -31,7 +38,7 @@ function App() {
           <div className='input'>
             <div className='label'>Input required parameters:</div>
             <div className='inputBox'>
-            <from>
+            {/* <form> */}
             <div className='flexme'>
               <SearchShort label='Latitude'></SearchShort>
               <SearchShort label='Longitude'></SearchShort>
@@ -43,9 +50,9 @@ function App() {
               <Search label='The date (yyyy-MM-dd) of installation of the PV system (to find the loss factor)'></Search>
             </div>
 
-            <button className='searchButton'>Estimate the PV power generated</button>
+            <button onClick={getData} className='searchButton'>Estimate the PV power generated</button>
 
-            </from>
+            {/* </form> */}
             </div>
           </div>
           <div className='graphContainer'>
